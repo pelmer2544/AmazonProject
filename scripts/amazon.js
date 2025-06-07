@@ -71,6 +71,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
             }
         });
 
+        // Checking if we already have one or more of the same item in the cart
         if (matchingItem) {
             matchingItem.quantity += 1;
         }
@@ -82,7 +83,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
             });
         }
 
-        
-        console.log(cart);
+        // Updating cart quantity UI in the top right corner
+        let cartQuantity = 0;
+        cart.forEach((item) => {
+
+            cartQuantity += item.quantity;
+        });
+        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     });
 });
