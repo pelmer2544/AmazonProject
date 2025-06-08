@@ -1,3 +1,6 @@
+import{cart, addToCart} from '../data/cart.js';
+import {products} from '../data/products.js';
+
 // Generating the HTML for the products
 let productsHTML = '';
 
@@ -62,33 +65,19 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
         
         const productId = button.dataset.productId;
-
-        let matchingItem; 
-
-        cart.forEach((item) => {
-            if (item.productId === productId) {
-                matchingItem = item;
-            }
-        });
-
-        // Checking if we already have one or more of the same item in the cart
-        if (matchingItem) {
-            matchingItem.quantity += 1;
-        }
-        else {
-
-            cart.push({
-                productId: productId,
-                quantity: 1
-            });
-        }
-
-        // Updating cart quantity UI in the top right corner
-        let cartQuantity = 0;
-        cart.forEach((item) => {
-
-            cartQuantity += item.quantity;
-        });
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+        addToCart(productId);
+        updateCartQuantity();
     });
 });
+
+// Updating cart quantity UI in the top right corner
+function updateCartQuantity() {
+
+    let cartQuantity = 0;
+    cart.forEach((cartItem) => {
+
+        cartQuantity += cartItem.quantity;
+    });
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
