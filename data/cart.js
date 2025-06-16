@@ -63,3 +63,19 @@ export function removeFromCart (productId) {
 function saveToStorave() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+// function that updates the current delivery date on the checkout page
+export function updateDeliveryOption (productId, deliveryOptionId) {
+
+    let matchingItem; 
+
+    cart.forEach((cartItem) => {
+        if (cartItem.productId === productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
+
+    saveToStorave();
+}
