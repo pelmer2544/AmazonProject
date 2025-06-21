@@ -1,19 +1,19 @@
 class Cart {
 
     cartItems;
-    localStorageKey;
+    #localStorageKey; // private properties cannot be used outside the class
 
     // Adding localStorageKey and loading data from storage when the class is used to create an object
     constructor(localStorageKey) {
 
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
     
-    loadFromStorage() {
+    #loadFromStorage() {
 
         // "this" is what you use instead of "cart" (the object you're currently in)
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if (!this.cartItems) {
             
@@ -31,7 +31,7 @@ class Cart {
 
     // function that saves the cart contents to local storage
     saveToStorave() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     // Adding product to the cart when the "Add to Cart" button is clicked
