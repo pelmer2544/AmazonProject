@@ -62,6 +62,38 @@ class Clothing extends Product {
   }
 }
 
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
+
+/*
+console.log(this);
+
+const object2 = {
+  a: 2,
+  b: this.a // this is undefined because object2 has not been created yet
+};
+*/
+
+/*
+function logThis() {
+  console.log(this);
+}
+logThis();
+logThis.call('hello'); // first parameter in .call is the value of 'this' (doesn't work on arrow functions)
+
+this
+const object3 = {
+  method: () => {
+    console.log(this);
+  }
+};
+
+object3.method();
+*/
+
 // array containing all the products that are displayed on the webpage
 export const products = [
   {
