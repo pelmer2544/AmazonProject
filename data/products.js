@@ -37,6 +37,29 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return '';
+  }
+}
+
+// Giving the Clothing class the same properties as the Product class
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+
+    super(productDetails); // Calling the constructor of the Product (parent) class
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">Size chart</a>
+    `;
+  }
 }
 
 // array containing all the products that are displayed on the webpage
@@ -701,5 +724,10 @@ export const products = [
   }
 ].map((productDetails) => { // Running each item in the array through the function below and returning the result to a new array
 
-  return new Product(productDetails);
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
+  else {
+    return new Product(productDetails);
+  }
 });
